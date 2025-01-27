@@ -8,6 +8,8 @@
         @csrf
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
+        <label for="specie">Specie:</label>
+        <input type="text" name="specie" id="specie" required>
         <button type="submit">Save</button>
     </form>
 @endsection

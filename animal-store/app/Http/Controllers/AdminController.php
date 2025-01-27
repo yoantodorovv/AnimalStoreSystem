@@ -23,7 +23,9 @@ class AdminController extends Controller
 
     public function createAnimal()
     {
-        return view('admin.animals.create');
+        $species = Species::all();
+        $breeds = Breed::all();
+        return view('admin.animals.create', compact('species', 'breeds'));
     }
 
     public function storeAnimal(Request $request)
@@ -52,7 +54,9 @@ class AdminController extends Controller
 
     public function editAnimal(Animal $animal)
     {
-        return view('admin.animals.edit', compact('animal'));
+        $species = Species::all();
+        $breeds = Breed::all();
+        return view('admin.animals.edit', compact('animal', 'species', 'breeds'));
     }
 
     public function updateAnimal(Request $request, Animal $animal)
@@ -106,6 +110,14 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
+
+        $specie = Species::where('name', $request->input('specie'))->first();
+
+        if (!$specie) {
+            return redirect()->back()->with('error', 'Specie not found!');
+        }
+
+        $request['species_id'] = $specie->id;
 
         Breed::create($request->all());
         return redirect()->route('admin.breeds.index');
