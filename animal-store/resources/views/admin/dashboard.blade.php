@@ -3,7 +3,8 @@
 @section('title', 'Admin | Dashboard')
 
 @section('content')
-<h1>Welcome to the Admin Dashboard</h1>
+<div id="dashboard-wrapper">
+    <h1>Welcome to the Admin Dashboard</h1>
     <nav>
         <ul>
             <li><a href="{{ url('/admin/animals/') }}">Manage Animals</a></li>
@@ -12,4 +13,5 @@
             <li><a href="{{ url('/admin/users/') }}">Manage Users</a></li>
         </ul>
     </nav>
+</div>
 @endsection

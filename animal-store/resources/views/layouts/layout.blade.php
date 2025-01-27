@@ -15,7 +15,6 @@
         <nav class="nav">
             <ul>
                 <li><a href="{{ url('/') }}" class="nav-btn">Home</a></li>
-                <li><a href="{{ url('/animals') }}" class="nav-btn">Animals</a></li>
             </ul>
 
             <div>
