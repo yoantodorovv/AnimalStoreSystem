@@ -7,6 +7,7 @@
     <title>@yield('title', 'Laravel App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
 </head>
 <body>
     <!-- Header Section -->
@@ -16,6 +17,10 @@
                 <li><a href="{{ url('/') }}" class="nav-btn">Home</a></li>
                 <li><a href="{{ url('/animals') }}" class="nav-btn">Animals</a></li>
             </ul>
+
+            <div>
+                <img src="{{ asset('/favicon.png') }}" class="logo" />
+            </div>
 
             <ul>
                 @if (Route::has('login'))

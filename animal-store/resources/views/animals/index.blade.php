@@ -3,29 +3,21 @@
 @section('title', 'Animals')
 
 @section('content')
-    <h1>Manage Animals</h1>
-    <a href="{{ route('admin.animals.create') }}">Add New Animal</a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($animals as $animal)
-                <tr>
-                    <td>{{ $animal->name }}</td>
-                    <td>
-                        <a href="{{ route('admin.animals.edit', $animal) }}">Edit</a>
-                        <form action="{{ route('admin.animals.delete', $animal) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <h1>All Animals</h1>
+
+    <div>
+        @foreach($animals as $animal)
+            <div style="margin-bottom: 20px;">
+                <h2>{{ $animal->name }}</h2>
+                @if($animal->image)
+                    <img src="{{ asset('storage/' . $animal->image) }}" alt="Image of {{ $animal->name }}" width="150">
+                @else
+                    <p>No image available</p>
+                @endif
+                <p><strong>Species:</strong> {{ $animal->species->name }}</p>
+                <p><strong>Breed:</strong> {{ $animal->breed->name }}</p>
+                <a href="{{ route('animals.show', $animal->id) }}">View Details</a>
+            </div>
+        @endforeach
+    </div>
 @endsection
