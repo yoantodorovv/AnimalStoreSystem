@@ -57,4 +57,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function() {
     Route::get('species/{specie}/edit', [AdminController::class, 'editSpecie'])->name('admin.species.edit');
     Route::put('species/{specie}', [AdminController::class, 'updateSpecie'])->name('admin.species.update');
     Route::delete('species/{specie}', [AdminController::class, 'deleteSpecie'])->name('admin.species.delete');
+
+    // Manage Users
+    Route::get('users', [AdminController::class, 'manageUsers'])->name('admin.users.index');
+    Route::get('users/create', [AdminController::class, 'createUser'])->name('admin.users.create');
+    Route::post('users', [AdminController::class, 'storeUser'])->name('admin.users.store');
+    Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('admin.users.update');
+    Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
 });

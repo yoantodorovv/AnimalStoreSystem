@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Species;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -185,5 +186,49 @@ class AdminController extends Controller
     {
         $specie->delete();
         return redirect()->route('admin.species.index');
+    }
+
+    // Manage Users
+
+    public function manageUsers()
+    {
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function createUser()
+    {
+        return view('admin.users.create');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        User::create($request->all());
+        return redirect()->route('admin.users.index');
+    }
+
+    public function editUser(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $user->update($request->all());
+        return redirect()->route('admin.users.index');
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.users.index');
     }
 }
