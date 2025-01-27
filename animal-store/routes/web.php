@@ -18,10 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('animals', AnimalController::class);
+
 // Configure Authentication routes
-Route::get('register', [AuthenticationController::class, 'showRegisterForm'])->name('register');
-Route::post('register', [AuthenticationController::class, 'register']);
-Route::get('login', [AuthenticationController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthenticationController::class, 'login']);
+Route::get('register', [AuthenticationController::class, 'registerGet'])->name('register');
+Route::post('register', [AuthenticationController::class, 'registerPost']);
+Route::get('login', [AuthenticationController::class, 'loginGet'])->name('login');
+Route::post('login', [AuthenticationController::class, 'loginPost']);
 Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
 

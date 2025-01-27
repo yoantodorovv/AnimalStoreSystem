@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
-    public function showRegisterForm()
+    public function registerGet()
     {
         return view('authentication.register');
     }
 
-    public function register(Request $request)
+    public function registerPost(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -38,12 +38,12 @@ class AuthenticationController extends Controller
         return redirect()->intended('/');
     }
 
-    public function showLoginForm()
+    public function loginGet()
     {
         return view('authentication.login');
     }
 
-    public function login(Request $request)
+    public function loginPost(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -54,9 +54,7 @@ class AuthenticationController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back();
     }
 
     public function logout(Request $request)
