@@ -14,7 +14,7 @@
             <!-- Add your header links here -->
             <ul>
                 <li><a href="{{ url('/') }}" class="nav-btn">Home</a></li>
-                <li><a href="{{ url('/courses') }}" class="nav-btn">Courses</a></li>
+                <li><a href="{{ url('/animals') }}" class="nav-btn">Animals</a></li>
             </ul>
         
 
@@ -22,7 +22,7 @@
                 @if (Route::has('login'))
                     @auth
                         @if (auth()->user()->isAdmin())
-                            <li><a href="{{ route('admin.dashboard') }}" class="nav-btn">Admin</a></li>
+                            <li><a href="{{ url('admin/dashboard') }}" class="nav-btn">Admin</a></li>
                         @endif
                         @if (Route::has('logout'))
                             <li>
