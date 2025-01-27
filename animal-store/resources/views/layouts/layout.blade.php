@@ -6,23 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Laravel App')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.png') }}">
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <nav class="nav">
-            <!-- Add your header links here -->
             <ul>
                 <li><a href="{{ url('/') }}" class="nav-btn">Home</a></li>
                 <li><a href="{{ url('/animals') }}" class="nav-btn">Animals</a></li>
             </ul>
-        
 
             <ul>
                 @if (Route::has('login'))
                     @auth
                         @if (auth()->user()->isAdmin())
-                            <li><a href="{{ url('admin/dashboard') }}" class="nav-btn">Admin</a></li>
+                            <li><a href="{{ url('admin/') }}" class="nav-btn">Admin</a></li>
                         @endif
                         @if (Route::has('logout'))
                             <li>
@@ -55,7 +54,5 @@
     <footer>
         <p>&copy; {{ date('Y') }} My Laravel App. All rights reserved.</p>
     </footer>
-
-    <!-- Add your scripts here -->
 </body>
 </html>
